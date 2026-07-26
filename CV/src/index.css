@@ -1,0 +1,61 @@
+:root {
+  --navy: #0a1a35;
+  --sidebar-bg: var(--navy);
+  --sidebar-text: #c7d0d9;
+  --sidebar-heading: #f4f7fa;
+  --accent: #39d98a;
+  --accent-soft: rgba(57, 217, 138, 0.14);
+  --main-bg: #e3f4fc;
+  --main-text: #2a2f36;
+  --main-heading: #10151b;
+  --border: #cfe6f2;
+  --page-bg: #e6eaed;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  color-scheme: light dark;
+  color: var(--main-text);
+  background: var(--page-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--accent);
+}
