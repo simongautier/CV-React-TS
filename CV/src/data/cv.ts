@@ -40,7 +40,10 @@ export const experiences: Experience[] = [
     title: 'Pause professionnelle',
     company: 'Raison médicale, reprise en cours',
     category: 'it',
-    bullets: [],
+    bullets: [
+      'Réalisation de projets personnels',
+      'Préparation de la certification CKA (Certified Kubernetes Administrator)',
+    ],
   },
   {
     period: '2021 — 2023',

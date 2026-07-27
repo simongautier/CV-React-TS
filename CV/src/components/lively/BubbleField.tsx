@@ -130,6 +130,7 @@ function layoutBubbles(
 export default function BubbleField({ items, tone }: BubbleFieldProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState<PlacedBubble[]>([]);
+  const [visible, setVisible] = useState(false);
 
   useLayoutEffect(() => {
     const el = containerRef.current;
@@ -146,20 +147,46 @@ export default function BubbleField({ items, tone }: BubbleFieldProps) {
     return () => observer.disconnect();
   }, [items]);
 
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="bubble-field" ref={containerRef}>
-      {layout.map((b) => {
-        const style: BubbleStyle = {
+      {layout.map((b, index) => {
+        const wrapStyle: CSSProperties = {
           top: `${b.y}px`,
           left: `${b.x}px`,
+          animationDelay: `${Math.min(index * 35, 400)}ms`,
+        };
+        const bubbleStyle: BubbleStyle = {
           '--dur': `${b.duration}s`,
           '--delay': `${b.delay}s`,
           '--dx': `${b.dx}px`,
           '--dy': `${b.dy}px`,
         };
         return (
-          <span key={b.label} className={`skill-bubble skill-bubble--${tone}`} style={style}>
-            {b.label}
+          <span
+            key={b.label}
+            className={`skill-bubble-wrap ${visible ? 'is-visible' : ''}`}
+            style={wrapStyle}
+          >
+            <span className={`skill-bubble skill-bubble--${tone}`} style={bubbleStyle}>
+              {b.label}
+            </span>
           </span>
         );
       })}
