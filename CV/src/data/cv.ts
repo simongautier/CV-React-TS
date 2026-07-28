@@ -57,7 +57,7 @@ export const experiences: Experience[] = [
       "Suivi des formations de l'entreprise (Fortinet, Meraki, Yubico)",
       'Remplacement d’équipements réseaux de niveau 2 (HP, Juniper)',
       'Déploiement Microsoft Active Directory',
-      'Formation interne et création d’une PKI',
+      'Formation interne et création d’une PKI Windows AD',
       'Construction des serveurs pour certains clients',
     ],
   },
@@ -123,16 +123,13 @@ export const education: EducationEntry[] = [
 
 export const skills = {
   languages: ['JavaScript', 'Python', 'C', 'C++', 'C#', 'CSS', 'HTML', 'ASM x64', 'ASM x86', 'Bash'],
-  tools: ['Visual Studio', 'VirtualBox', 'VMware', 'Wireshark', 'Putty', 'Windows AD', 'Nmap', 'Metasploit', 'Fuzz', 'Dnsrecon', 'Aircrack-ng'],
+  tools: ['VirtualBox', 'VMware', 'Wireshark', 'Windows AD', 'Nmap', 'Metasploit', 'Fuzz', 'Dnsrecon', 'Aircrack-ng'],
   other: ['Fortinet : NSE 1 - 2 - 3 - 4', 'Score Root-Me : 1800 points'],
 };
 
 export const spokenLanguages: Language[] = [
   { name: 'Français', level: 'Voltaire : 706 points' },
   { name: 'Anglais', level: 'Courant (TOEIC 890)' },
-  { name: 'Espagnol', level: 'Scolaire' },
-  { name: 'Chinois', level: 'Scolaire' },
-  { name: 'Italien', level: 'Notions' },
 ];
 
 export const interests: string[] = [

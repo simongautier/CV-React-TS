@@ -394,6 +394,18 @@
 
 /* ---------- Print ---------- */
 
+/* Kept in the layout (not display:none) so its height stays measurable via
+   scrollHeight while the lively view is the active screen mode — just moved
+   off-screen so it's invisible until printing reveals it in place. Scoped to
+   "not print" so it never has to be reset/overridden for the print output. */
+@media not print {
+  .print-page--offscreen {
+    position: absolute;
+    top: 0;
+    left: -9999px;
+  }
+}
+
 @media print {
   @page {
     size: A4;
@@ -404,18 +416,40 @@
     background: var(--main-bg);
   }
 
+  .lively {
+    display: none;
+  }
+
+  /* Rather than reflowing the layout to paginate, we shrink the exact same
+     on-screen CV block to fit within one page (scale computed in App.tsx from
+     the block's real rendered height) and clip to a single page frame.
+     The block is taken out of normal flow (absolute) — otherwise its full,
+     pre-scale height still occupies flow space and the browser generates a
+     second page for the "overflow", even though nothing is visible there. */
+  .print-page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+  }
+
   .cv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210mm;
     box-shadow: none;
     margin: 0;
     max-width: none;
-    width: 210mm;
-    min-height: 297mm;
+    min-height: auto;
+    transform: scale(var(--print-scale, 1));
+    transform-origin: top center;
   }
 }
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 760px) {
+@media screen and (max-width: 760px) {
   .cv {
     grid-template-columns: 1fr;
     margin: 0;
