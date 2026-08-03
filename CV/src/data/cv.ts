@@ -27,6 +27,8 @@ export const profile = {
     "De nature extrêmement curieuse, j'aime comprendre avant d'apprendre.",
   summary:
     "Un antécédent de nature médicale m'a contraint à stopper mon activité professionnelle. Cette pause n'ayant eu aucun impact sur mes capacités est désormais terminée et je reprends une activité en tant que technicien.",
+  description:
+    "Passionné d'informatique, d'automobile et de musique, j'aime autant comprendre le fonctionnement d'un système que celui d'un moteur. Cette curiosité se retrouve aussi bien dans mes projets techniques que dans mes centres d'intérêt. Pour me détendre, rien ne vaut une balade à moto ou une bonne session de jeux vidéo.",
   contact: {
     email: 'simon-gautier@hotmail.com',
     phone: '07 83 91 84 41',

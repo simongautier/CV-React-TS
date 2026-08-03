@@ -50,7 +50,7 @@ export default function LivelyPage() {
 
       <section className="lv-section" id="profil">
         <h2 className="lv-heading">Profil</h2>
-        <p className="lv-profile-text">{profile.summary}</p>
+        <p className="lv-profile-text">{profile.description}</p>
         <div className="lv-badges">
           <span className="lv-badge">{profile.contact.license}</span>
           {interests.map((i) => (
