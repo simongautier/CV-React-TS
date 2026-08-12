@@ -447,6 +447,31 @@
   }
 }
 
+/* Same A4 single-page layout as the @media print block above, but triggered
+   by a JS-added class instead — html2canvas (used for the PDF download
+   button) renders the live DOM and never applies @media print, so without
+   this the export would use the wider on-screen layout and get clipped/
+   paginated instead of matching the print output. */
+.pdf-capture .print-page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+}
+
+.pdf-capture .cv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  box-shadow: none;
+  margin: 0;
+  max-width: none;
+  min-height: auto;
+  transform: scale(var(--print-scale, 1));
+  transform-origin: top center;
+}
+
 /* ---------- Responsive ---------- */
 
 @media screen and (max-width: 760px) {
