@@ -480,6 +480,11 @@
     margin: 0;
   }
 
+  .sidebar,
+  .main {
+    min-width: 0;
+  }
+
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 4px;

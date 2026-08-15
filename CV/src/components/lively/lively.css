@@ -139,6 +139,11 @@
   text-align: center;
 }
 
+.lv-hero .header {
+  align-self: stretch;
+  width: 100%;
+}
+
 .lv-hero .terminal-window {
   width: 760px;
   max-width: 100%;
