@@ -130,9 +130,6 @@ export const skills = {
 export const spokenLanguages: Language[] = [
   { name: 'Français', level: 'Voltaire : 706 points' },
   { name: 'Anglais', level: 'Courant (TOEIC 890)' },
-  { name: 'Espagnol', level: 'Scolaire' },
-  { name: 'Chinois', level: 'Scolaire' },
-  { name: 'Italien', level: 'Notions' },
 ];
 
 export const interests: string[] = [
