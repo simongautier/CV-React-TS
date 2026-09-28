@@ -1,0 +1,236 @@
+/* Print / PDF export only. Every rule here is scoped under @media print or
+   the JS-toggled .pdf-capture class, so nothing in this file ever affects
+   the normal on-screen view — see App.css and lively.css for that. */
+
+/* Kept in the layout (not display:none) so its height stays measurable via
+   scrollHeight while the lively view is the active screen mode — just moved
+   off-screen so it's invisible until printing reveals it in place. Scoped to
+   "not print" so it never has to be reset/overridden for the print output. */
+@media not print {
+  .print-page--offscreen {
+    position: absolute;
+    top: 0;
+    left: -9999px;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    background: var(--main-bg);
+  }
+
+  .lively {
+    display: none;
+  }
+
+  .mode-bar {
+    display: none;
+  }
+
+  .cursor {
+    display: none;
+  }
+
+  /* Full A4 width. Font size and spacing are tightened below so the whole
+     CV lands on a single page without any transform/scale trick — scaling
+     the box down would shrink its width along with its height, leaving a
+     blank margin instead of filling the page. --print-font-size is set by
+     App.tsx's fitPrintContent, which shrinks it further than the 12px
+     default when this fixed reduction still isn't enough for longer CVs.
+     Selector is html:root, not plain html — index.css's unscoped `:root`
+     rule (a pseudo-class, specificity 0,1,0) would otherwise always beat a
+     bare `html` type selector (0,0,1) here and keep the screen font-size,
+     silently no-op'ing this whole block during native printing. */
+  html:root {
+    font-size: var(--print-font-size, 12px);
+  }
+
+  .print-page {
+    width: 210mm;
+  }
+
+  .cv {
+    width: 210mm;
+    box-shadow: none;
+    margin: 0;
+    max-width: none;
+    /* Fills the A4 page height even when content falls short of it, so the
+       sidebar/main backgrounds reach the bottom edge instead of leaving a
+       blank white band there. fitPrintContent's scrollHeight check (App.tsx)
+       still works with this: shorter content is clamped to exactly one page,
+       longer content grows past it and gets shrunk back down to fit. */
+    min-height: 297mm;
+  }
+
+  .sidebar {
+    padding: 18px 16px;
+    gap: 10px;
+  }
+
+  .main {
+    padding: 16px 20px 16px;
+    gap: 10px;
+    line-height: 1.35;
+  }
+
+  .terminal-body {
+    padding: 8px 12px 12px;
+    min-height: auto;
+  }
+
+  .terminal-line {
+    margin-bottom: 5px;
+  }
+
+  .terminal-output--name {
+    font-size: 1.4rem;
+  }
+
+  .terminal-output--role {
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+
+  .terminal-output--summary {
+    font-size: 0.8rem;
+  }
+
+  .timeline {
+    gap: 6px;
+  }
+
+  .timeline-item {
+    gap: 10px;
+  }
+
+  .timeline-body ul {
+    gap: 1px;
+    margin-top: 3px;
+  }
+
+  .section-title {
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+  }
+
+  .timeline-group-title {
+    margin-bottom: 6px;
+  }
+
+  .timeline-group-title--spaced {
+    margin-top: 8px;
+  }
+
+  .chip-list {
+    gap: 4px;
+    margin-bottom: 2px;
+  }
+
+  .plain-list {
+    gap: 3px;
+    line-height: 1.3;
+  }
+
+  .sub-heading {
+    margin: 6px 0 3px;
+  }
+}
+
+/* Same single-page A4 layout as the @media print block above, but triggered
+   by a JS-added class instead — html2canvas (used for the PDF download
+   button) renders the live DOM and never applies @media print, so without
+   this the export would use the wider, roomier on-screen layout instead of
+   matching the print output. Kept in sync with the block above by hand. */
+html.pdf-capture {
+  font-size: var(--print-font-size, 12px);
+}
+
+.pdf-capture .print-page {
+  width: 210mm;
+}
+
+.pdf-capture .cv {
+  width: 210mm;
+  box-shadow: none;
+  margin: 0;
+  max-width: none;
+  min-height: 297mm;
+}
+
+.pdf-capture .sidebar {
+  padding: 18px 16px;
+  gap: 10px;
+}
+
+.pdf-capture .main {
+  padding: 16px 20px 16px;
+  gap: 10px;
+  line-height: 1.35;
+}
+
+.pdf-capture .terminal-body {
+  padding: 8px 12px 12px;
+  min-height: auto;
+}
+
+.pdf-capture .terminal-line {
+  margin-bottom: 5px;
+}
+
+.pdf-capture .terminal-output--name {
+  font-size: 1.4rem;
+}
+
+.pdf-capture .terminal-output--role {
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.pdf-capture .terminal-output--summary {
+  font-size: 0.8rem;
+}
+
+.pdf-capture .timeline {
+  gap: 6px;
+}
+
+.pdf-capture .timeline-item {
+  gap: 10px;
+}
+
+.pdf-capture .timeline-body ul {
+  gap: 1px;
+  margin-top: 3px;
+}
+
+.pdf-capture .section-title {
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+}
+
+.pdf-capture .timeline-group-title {
+  margin-bottom: 6px;
+}
+
+.pdf-capture .timeline-group-title--spaced {
+  margin-top: 8px;
+}
+
+.pdf-capture .chip-list {
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.pdf-capture .plain-list {
+  gap: 3px;
+  line-height: 1.3;
+}
+
+.pdf-capture .sub-heading {
+  margin: 6px 0 3px;
+}

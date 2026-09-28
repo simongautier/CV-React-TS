@@ -79,6 +79,7 @@
   top: calc(100% + 8px);
   left: 0;
   min-width: 210px;
+  max-width: min(210px, calc(100vw - 32px));
   background: #12181f;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
@@ -147,6 +148,7 @@
 .lv-hero .terminal-window {
   width: 760px;
   max-width: 100%;
+  margin: 0 auto;
   text-align: left;
 }
 
@@ -437,7 +439,42 @@
     padding: 12px 16px;
   }
 
+  .lv-hero {
+    padding: 48px 20px 20px;
+  }
+
+  .lv-section {
+    padding: 36px 20px;
+  }
+
+  .lv-card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
   .lv-bubble-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .lv-nav {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .lv-hero {
+    padding: 40px 16px 16px;
+  }
+
+  .lv-section {
+    padding: 28px 16px;
+  }
+
+  .lv-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lv-heading {
+    font-size: 1.2rem;
   }
 }

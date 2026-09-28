@@ -27,6 +27,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* iOS Safari ignores overflow-x: hidden on body alone — the offscreen
+     print page (left: -9999px, see print.css) would otherwise open up a
+     horizontally scrollable viewport on iOS only. */
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -37,6 +41,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 h1,
