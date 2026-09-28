@@ -65,6 +65,14 @@
        still works with this: shorter content is clamped to exactly one page,
        longer content grows past it and gets shrunk back down to fit. */
     min-height: 297mm;
+    /* App.css's mobile breakpoint (max-width: 760px) reacts to the real
+       browser viewport, not this element's own (forced-to-A4) width — on a
+       phone, printing/exporting would otherwise still stack the sidebar
+       above main instead of beside it, roughly doubling the real content
+       height that fitPrintContent measures versus what html2canvas actually
+       captures (it renders a separate simulated-width clone that isn't
+       affected), throwing off the page-count math and font-size fit. */
+    grid-template-columns: 300px 1fr !important;
   }
 
   .sidebar {
@@ -160,6 +168,13 @@ html.pdf-capture {
   margin: 0;
   max-width: none;
   min-height: 297mm;
+  /* Same reasoning as the @media print block's .cv rule above: the mobile
+     breakpoint reacts to the real (possibly phone-width) viewport, not this
+     element's forced A4 width, and would otherwise stack sidebar above main
+     while App.tsx is measuring — inflating the height it fits/paginates
+     against far past what html2canvas (a separate, correctly-A4-width
+     simulated clone) actually ends up capturing. */
+  grid-template-columns: 300px 1fr !important;
 }
 
 .pdf-capture .sidebar {
